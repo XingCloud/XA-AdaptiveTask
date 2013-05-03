@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<configuration>
+  <property>
+    <name>fs.default.name</name>
+    <value>hdfs://ELEX-LA-WEB1:19000</value>
+  </property>
+
+  <property>
+     <name>hadoop.tmp.dir</name>
+     <value>/data/hadoop/cache/hadoop</value>
+  </property>
+ </configuration>
