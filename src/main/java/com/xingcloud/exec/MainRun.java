@@ -86,6 +86,7 @@ public class MainRun {
         for (int i = 1; i < 8; i++) {
             dayStatis = queryReader.readQueryLog(-i);
             analyzer.setEnd(dayStatis);
+            analyzer.rolling();
             FileUtil.deleteLocalDir(Utility.getDayIndexLogParentPath(DateUtil.getDateByDistance(-i)));
             indexWriter.writeIndexes(dayStatis, -i);
         }
