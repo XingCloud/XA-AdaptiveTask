@@ -24,11 +24,19 @@ public class IndexWriter {
     }
 
     public void writeIndexes(Map<String,Set<Index>> indexesMap,Enumeration.INDEX_LOG_TYPE type){
+         writeIndexes(indexesMap, type,YESTERDAY);
+    }
+
+    public void writeIndexes(Map<String,Set<Index>> indexesMap,int dateDistance){
+        writeIndexes(indexesMap, Enumeration.INDEX_LOG_TYPE.DAY_LOG,dateDistance);
+    }
+
+    private void writeIndexes(Map<String,Set<Index>> indexesMap,Enumeration.INDEX_LOG_TYPE type, int dateDistance){
         String partentPath = null ;
         FileUtil.FST fsType  = FileUtil.FST.LOCAL ;
         switch (type){
             case DAY_LOG:
-                partentPath = Utility.getDayIndexLogParentPath(DateUtil.getDateByDistance(YESTERDAY));
+                partentPath = Utility.getDayIndexLogParentPath(DateUtil.getDateByDistance(dateDistance));
                 break ;
             case WEEK_LOG:
                 partentPath = Utility.getWeekIndexLogParentPath();
@@ -45,6 +53,8 @@ public class IndexWriter {
             FileUtil.writeContentToFile(fileName,content,fsType);
         }
     }
+
+
 
 
 

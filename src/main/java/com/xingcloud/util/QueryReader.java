@@ -29,9 +29,9 @@ public class QueryReader {
         gson = new Gson();
     }
 
-    public Map<String, Set<Index>> readQueryLog() {
+    public Map<String,Set<Index>> readQueryLog(int dateDistance){
         Map<String, Map<Index, Integer>> indexesMap = new HashMap<String, Map<Index, Integer>>();
-        String fileName = Utility.getQueryLogPath();
+        String fileName = Utility.getQueryLogPath(dateDistance);
         File file = new File(fileName);
         logger.info("Read query log from file : " + fileName);
         String line = null;
@@ -64,6 +64,9 @@ public class QueryReader {
             logger.error("Read query log from : " + fileName + " failed");
         }
         return Utility.extract(indexesMap);
+    }
+    public Map<String, Set<Index>> readQueryLog() {
+        return readQueryLog(-1);
     }
 
     private Pair<String, List<Index>> parse(String json) {

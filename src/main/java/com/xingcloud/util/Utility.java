@@ -23,14 +23,12 @@ public class Utility {
     public static String getEventPattern(String event) {
         return event.replaceAll("(\\.\\*)+$", ".*");
     }
-
-
-    public static String getQueryLogPath() {
-        String date = DateUtil.getDateByDistance(-1);
-        return getQueryLogPath(date);
-    }
     public static  String getQueryLogPath(String date){
         return QUERY_LOG_PATH_PREFIX + date ;
+    }
+    public static String getQueryLogPath(int dateDistance){
+        String date = DateUtil.getDateByDistance(dateDistance);
+        return getQueryLogPath(date);
     }
 
     public static String getDayIndexLogParentPath(String date) {

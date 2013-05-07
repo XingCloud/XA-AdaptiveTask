@@ -95,6 +95,15 @@ public class FileUtil {
         }
 
     }
+    public static void deleteLocalDir(String path){
+        try{
+            Configuration conf = new Configuration();
+            FileSystem fs = FileSystem.getLocal(conf);
+            fs.delete(new Path(path),true);
+        }catch (IOException e){
+            logger.error("Delete local dir : " + path + " failed");
+        }
+    }
 
     public static List<String> listProjects(String path) {
         List<String> projects = new ArrayList<String>();
