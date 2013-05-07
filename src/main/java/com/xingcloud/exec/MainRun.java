@@ -1,10 +1,7 @@
 package com.xingcloud.exec;
 import com.xingcloud.model.*;
 import com.xingcloud.model.Enumeration;
-import com.xingcloud.util.IndexReader;
-import com.xingcloud.util.IndexWriter;
-import com.xingcloud.util.QueryReader;
-import com.xingcloud.util.Utility;
+import com.xingcloud.util.*;
 import org.apache.log4j.Logger;
 
 import java.util.HashMap;
@@ -47,6 +44,7 @@ public class MainRun {
 
         // write task
         logger.info("Write task");
+        FileUtil.deleteHDFSDir(Utility.INDEX_TASK_PATH_PREFIX);
         Map<String,Set<Index>> taskIndexs = new HashMap<String, Set<Index>>() ;
         for(Map.Entry<String,Set<Index>> entry : weekStatis.entrySet()){
             taskIndexs.put(entry.getKey(), Utility.TopFreq(entry.getValue(),0.7f,100)) ;

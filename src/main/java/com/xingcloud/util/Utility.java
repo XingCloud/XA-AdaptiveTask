@@ -18,7 +18,7 @@ public class Utility {
 
     private final  static String QUERY_LOG_PATH_PREFIX = "/data/catalina/8081/logs/parameters.log."  ;
     private final  static String INDEX_LOG_PATH_PREFIX = "/data/log/queryanalysis/" ;
-    private final  static String INDEX_TASK_PATH_PREFIX = "taskIndexes/" ;
+    public final  static String INDEX_TASK_PATH_PREFIX = "taskIndexes/" ;
 
     public static String getEventPattern(String event) {
         return event.replaceAll("(\\.\\*)+$", ".*");

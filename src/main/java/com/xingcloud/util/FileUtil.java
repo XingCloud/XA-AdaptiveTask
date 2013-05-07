@@ -69,7 +69,10 @@ public class FileUtil {
                 FileSystem fs = FileSystem.get(conf);
 
                 Path path = new Path(fileName) ;
-
+                Path parent = path.getParent() ;
+                if(!fs.exists(parent)){
+                    fs.mkdirs(parent);
+                }
                 FSDataOutputStream outputStream = fs.create(path,true);
                 outputStream.write(content.getBytes("UTF-8"));
                 outputStream.close();
@@ -79,6 +82,17 @@ public class FileUtil {
         } catch (Exception e) {
             logger.error("Write content to " + fileName + " failed ," + e.getMessage());
         }
+    }
+
+    public static void deleteHDFSDir(String path){
+        try{
+            Configuration conf = new Configuration();
+            FileSystem fs = FileSystem.get(conf);
+            fs.deleteOnExit(new Path(path)) ;
+        }catch (IOException e){
+            logger.error("Delete hdfs dir : " + path + " failed");
+        }
+
     }
 
     public static List<String> listProjects(String path) {
