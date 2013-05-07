@@ -71,6 +71,7 @@ public class FileUtil {
                 Path path = new Path(fileName) ;
                 Path parent = path.getParent() ;
                 if(!fs.exists(parent)){
+                    logger.info("Path " + parent.getName() + " not exist , create it");
                     fs.mkdirs(parent);
                 }
                 FSDataOutputStream outputStream = fs.create(path,true);
@@ -88,7 +89,7 @@ public class FileUtil {
         try{
             Configuration conf = new Configuration();
             FileSystem fs = FileSystem.get(conf);
-            fs.deleteOnExit(new Path(path)) ;
+            fs.delete(new Path(path),true);
         }catch (IOException e){
             logger.error("Delete hdfs dir : " + path + " failed");
         }
