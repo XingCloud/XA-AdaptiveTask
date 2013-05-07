@@ -92,12 +92,14 @@ public class Utility {
         return indexList ;
     }
 
-    public static Set<Index> TopFreq(Set<Index> indexSet,float percent ,int max){
-        int size = (int) (indexSet.size() * percent );
-        size =  size < max ? size : max ;
-        logger.info(size + " of " + indexSet.size() + " indexes need to compute today");
+    public static Set<Index> TopFreq(Set<Index> indexSet,float percent ,int min){
+        int num = 0 ;
+        int size = indexSet.size() ;
+        int part = (int) (indexSet.size() * percent) ;
+        num = size <= min ? size : part <= min ? min : part ;
+        logger.info(num + " of " + indexSet.size() + " indexes need to compute today");
         List<Index> sortedList = SortDescendByFreq(indexSet) ;
-        return  new HashSet<Index>(sortedList.subList(0,size)) ;
+        return  new HashSet<Index>(sortedList.subList(0,num)) ;
 
 
     }
