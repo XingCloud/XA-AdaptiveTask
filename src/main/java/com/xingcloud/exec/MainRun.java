@@ -64,7 +64,7 @@ public class MainRun {
         FileUtil.deleteHDFSDir(Utility.INDEX_TASK_PATH_PREFIX);
         Map<String, Set<Index>> taskIndexs = new HashMap<String, Set<Index>>();
         for (Map.Entry<String, Set<Index>> entry : weekStatis.entrySet()) {
-            taskIndexs.put(entry.getKey(), Utility.TopFreq(entry.getValue(), 0.7f, 100));
+            taskIndexs.put(entry.getKey(), Utility.TopFreq(entry.getValue(), 1.0f, 100));
         }
         indexWriter.writeIndexes(taskIndexs, Enumeration.INDEX_LOG_TYPE.TASK_LOG);
         logger.info("End day rolling analysis");
