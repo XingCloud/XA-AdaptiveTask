@@ -106,10 +106,10 @@ public class Query {
         if (items != null) {
             for (Item item : items) {
                 // offline
-                item.number_of_day = 0 ;
-                item.number_of_day_origin = 0 ;
                 event_key = item.getEvent_key();
                 if (!start_time.equals(end_time)) {
+                    item.number_of_day = 0 ;
+                    item.number_of_day_origin = 0 ;
                     String eventPattern = Utility.getEventPattern(event_key);
                     if (!"visit.*".equals(eventPattern) || "pay.*".equals(eventPattern))
                         return null;
