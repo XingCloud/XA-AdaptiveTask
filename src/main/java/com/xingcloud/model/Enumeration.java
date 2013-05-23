@@ -9,7 +9,7 @@ package com.xingcloud.model;
  */
 public class Enumeration {
     public enum INTERVAL{
-        MIN5,HOUR,DAY
+        MIN5,HOUR,DAY,WEEK,MONTH,PERIOD
     }
 
     public enum TYPE{

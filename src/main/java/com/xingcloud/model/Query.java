@@ -100,6 +100,10 @@ public class Query {
 
     public Pair<String, List<Index>> toIndexs() {
 
+        if(interval == Enumeration.INTERVAL.WEEK || interval == Enumeration.INTERVAL.MONTH || interval == Enumeration.INTERVAL.PERIOD){
+            interval = Enumeration.INTERVAL.DAY ;
+        }
+
         Pair<String, List<Index>> pair = new Pair<String, List<Index>>(project_id, new ArrayList<Index>());
         Index index = null;
         String event_key = null;
