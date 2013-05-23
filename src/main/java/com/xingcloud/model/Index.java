@@ -61,7 +61,7 @@ public class Index {
         switch (groupby_type) {
             case USER_PROPERTIES:
                 bys.add(groupby);
-                group_by.put("USER_RPOPERTIES", bys);
+                group_by.put("USER_PROPERTIES", bys);
                 break;
             case EVENT:
                 bys.add(Integer.parseInt(groupby));
