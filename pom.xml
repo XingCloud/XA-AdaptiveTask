@@ -43,6 +43,13 @@
             <artifactId>hadoop-client</artifactId>
             <version>2.0.0-cdh4.3.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.hadoop.hdfs</groupId>
+            <artifactId>hadoop-hdfs</artifactId>
+            <version>2.0.0-cdh4.3.0</version>
+        </dependency>
+
+
 
         <dependency>
             <groupId>com.google.guava</groupId>
