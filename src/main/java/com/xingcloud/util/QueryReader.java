@@ -90,6 +90,8 @@ public class QueryReader {
             int distance = DateUtil.getDateDistance(endDate, DateUtil.getDateByDistance(-1));
             Index index = null;
             boolean first = true;
+            if(distance != 0 && ("visit.*".equals(event) || "pay.*".equals(event)))
+                return null;
 
             if ("GROUP".equals(type)) {
                 String gbv = fileds[length - 1];
