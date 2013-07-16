@@ -42,26 +42,26 @@ public class QueryReader {
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
             while ((line = bufferedReader.readLine()) != null) {
-                Pair<String, List<Index>> pair = parse(line);
+                Pair<String, Index> pair = parse(line);
                 if (pair != null) {
                     String project = pair.first;
-                    List<Index> indexList = pair.second;
-                    for (Index index : indexList) {
-                        Map<Index, Integer> indexes = indexesMap.get(project);
-                        if (indexes != null) {
-                            Integer value = indexes.get(index);
-                            if (value != null) {
-                                value += 1;
-                            } else {
-                                indexes.put(index, 1);
-                            }
+                    Index index = pair.second;
+
+                    Map<Index, Integer> indexes = indexesMap.get(project);
+                    if (indexes != null) {
+                        Integer value = indexes.get(index);
+                        if (value != null) {
+                            value += 1;
                         } else {
-                            indexes = new HashMap<Index, Integer>();
                             indexes.put(index, 1);
-                            indexesMap.put(project, indexes);
                         }
+                    } else {
+                        indexes = new HashMap<Index, Integer>();
+                        indexes.put(index, 1);
+                        indexesMap.put(project, indexes);
                     }
                 }
+
             }
             bufferedReader.close();
         } catch (Exception e) {
@@ -74,7 +74,7 @@ public class QueryReader {
         return readQueryLog(-1);
     }
 
-    private Pair<String, List<Index>> parse(String json) {
+    private Pair<String, Index> parse(String json) {
         try {
 
             String[] fileds = json.split(",");
@@ -115,7 +115,7 @@ public class QueryReader {
                     }
                     segment += fileds[i];
                 }
-                Enumeration.INTERVAL intervalenum = null;
+                Enumeration.INTERVAL intervalenum = Enumeration.INTERVAL.DAY;
                 if ("DAY".equals(interval)) {
                     intervalenum = Enumeration.INTERVAL.DAY;
                 } else if ("MIN5".equals(interval)) {
@@ -130,7 +130,7 @@ public class QueryReader {
 
             }
 
-            return new Pair<String, List<Index>>(project, Arrays.asList(index));
+            return new Pair<String, Index>(project, index);
 
         } catch (Exception e) {
             logger.error("Parse query to indexs failed ," + json);
