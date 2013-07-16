@@ -1,5 +1,6 @@
 package com.xingcloud.util;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -25,6 +26,7 @@ public class DateUtil {
         }
         return distance;
     }
+
     /*
     public static String getTodayDate(){
         TimeZone tz = TimeZone.getTimeZone("GMT+8");
@@ -33,12 +35,28 @@ public class DateUtil {
         return sdf.format(new Date()) ;
 
     } */
-    public static String getDateByDistance(int distance){
-        TimeZone tz = TimeZone.getTimeZone("GMT+8") ;
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd") ;
+    public static String getDateByDistance(int distance) {
+        TimeZone tz = TimeZone.getTimeZone("GMT+8");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         sdf.setTimeZone(tz);
-        Calendar cal = Calendar.getInstance(tz) ;
-        cal.add(Calendar.DAY_OF_MONTH,distance);
-        return  sdf.format(cal.getTime()) ;
+        Calendar cal = Calendar.getInstance(tz);
+        cal.add(Calendar.DAY_OF_MONTH, distance);
+        return sdf.format(cal.getTime());
+    }
+
+    public static String getDateByDistance(String date, int distance) {
+        TimeZone tz = TimeZone.getTimeZone("GMT+8");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        sdf.setTimeZone(tz);
+        try {
+            Date time = sdf.parse(date);
+            Calendar cal = Calendar.getInstance(tz);
+            cal.setTime(time);
+            cal.add(Calendar.DAY_OF_MONTH,distance);
+            return sdf.format(cal.getTime());
+        } catch (ParseException e) {
+
+        }
+        return null;
     }
 }
