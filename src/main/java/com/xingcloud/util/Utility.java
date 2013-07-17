@@ -95,6 +95,9 @@ public class Utility {
         int size = indexSet.size() ;
         int part = (int) (indexSet.size() * percent) ;
         num = size <= min ? size : part <= min ? min : part ;
+        if(num > 600){
+            num = 600;
+        }
         logger.info(num + " of " + indexSet.size() + " indexes need to compute today");
         List<Index> sortedList = SortDescendByFreq(indexSet) ;
         return  new HashSet<Index>(sortedList.subList(0,num)) ;
