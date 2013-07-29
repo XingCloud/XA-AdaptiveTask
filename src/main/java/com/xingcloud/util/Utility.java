@@ -127,7 +127,18 @@ public class Utility {
     List<Index> sortedList = SortDescendByFreq(indexSet);
     return new HashSet<Index>(sortedList.subList(0, num));
 
+  }
 
+  public List<Index> Set2SortList(Set<Index> indexSet){
+
+    List<Index> indexList = new ArrayList<Index>(indexSet) ;
+     Collections.sort(indexList,new Comparator<Index>() {
+       @Override
+       public int compare(Index o1, Index o2) {
+         return - o1.getFreq().compareTo(o2.getFreq());
+       }
+     });
+    return indexList;
   }
 
 

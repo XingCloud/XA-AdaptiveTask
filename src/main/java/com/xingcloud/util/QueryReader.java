@@ -94,6 +94,10 @@ public class QueryReader {
       if (coverRange != 0 && !("visit.*".equals(event) || "pay.*".equals(event)))
         return null;
 
+      if(distance < 0){
+        return  null ;
+      }
+
       if ("GROUP".equals(type)) {
         String gbv = fileds[length - 1];
         Enumeration.GROUPBY_TYPE gbt = fileds[length - 2].equals("EVENT") ? Enumeration.GROUPBY_TYPE.EVENT : Enumeration.GROUPBY_TYPE.USER_PROPERTIES;
