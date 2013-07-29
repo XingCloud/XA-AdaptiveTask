@@ -49,7 +49,7 @@ public class IndexWriter {
         String content = null ;
         for(Map.Entry<String,Set<Index>> entry : indexesMap.entrySet()){
             fileName = partentPath + entry.getKey() ;
-            content = gson.toJson(Utility.Set2Map(entry.getValue()));
+            content = gson.toJson(Utility.Set2SortList(entry.getValue()));
             FileUtil.writeContentToFile(fileName,content,fsType);
         }
     }

@@ -129,7 +129,7 @@ public class Utility {
 
   }
 
-  public List<Index> Set2SortList(Set<Index> indexSet){
+  public static List<Index> Set2SortList(Set<Index> indexSet){
 
     List<Index> indexList = new ArrayList<Index>(indexSet) ;
      Collections.sort(indexList,new Comparator<Index>() {
