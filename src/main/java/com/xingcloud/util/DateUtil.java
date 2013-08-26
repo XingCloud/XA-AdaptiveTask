@@ -20,7 +20,7 @@ public class DateUtil {
         try {
             long begin = sdf.parse(startDate).getTime();
             long end = sdf.parse(endDate).getTime();
-            distance = (int) (end - begin) / 86400000;
+            distance = (int) ((end - begin) / 86400000);
         } catch (Exception e) {
             // Do nothing
         }
